@@ -472,7 +472,7 @@ func renderInstaller() g.Widget {
 		g.Style().SetFontSize(20).To(
 			renderErrorCard(
 				HellocordAlert,
-				color.Black,
+				HellocordText,
 				"**Hellocord** is maintained at **github.com/unknowndevelopment-ld/Equicord**. Only download Hellocord from our official repository.\n"+
 					"If you downloaded from any other source, you should delete / uninstall everything immediately, run a malware scan and change your Discord password.",
 				90,
@@ -632,7 +632,7 @@ func renderInstaller() g.Widget {
 				g.Style().
 					SetColor(g.StyleColorButton, Ternary(isOpenAsar, HellocordWhite, HellocordBlue)).
 					SetColor(g.StyleColorButtonHovered, Ternary(isOpenAsar, HellocordWhiteHover, HellocordBlueHovered)).
-					SetColor(g.StyleColorText, Ternary(isOpenAsar, HellocordBlue, HellocordWhite)).
+					SetColor(g.StyleColorText, Ternary(isOpenAsar, HellocordBlue, color.RGBA{255, 255, 255, 0xff})).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
 					To(
 						g.Button(Ternary(isOpenAsar, "Uninstall OpenAsar", Ternary(currentDiscord != nil, "Install OpenAsar", "(Un-)Install OpenAsar"))).
@@ -698,7 +698,7 @@ func loop() {
 	g.PushStyleColor(g.StyleColorTitleBgActive, HellocordWhiteHover)
 	g.PushStyleColor(g.StyleColorFrameBg, HellocordSurface)
 	g.PushStyleColor(g.StyleColorFrameBgHovered, HellocordSurfaceHover)
-	g.PushStyleColor(g.StyleColorHeader, color.RGBA{HellocordBlue.R, HellocordBlue.G, HellocordBlue.B, 0x33})
+	g.PushStyleColor(g.StyleColorHeader, color.RGBA{HellocordBlue.R, HellocordBlue.G, HellocordBlue.B, 0x55})
 	g.PushStyleColor(g.StyleColorHeaderHovered, HellocordWhiteHover)
 	g.PushStyleColor(g.StyleColorCheckMark, HellocordBlue)
 	g.PushStyleColor(g.StyleColorText, HellocordText)

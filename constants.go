@@ -13,7 +13,7 @@ import (
 
 const ReleaseUrl = "https://api.github.com/repos/unknowndevelopment-ld/Equicord/releases/latest"
 const ReleaseUrlFallback = "https://api.github.com/repos/unknowndevelopment-ld/Equicord/releases?per_page=1"
-const InstallerReleaseUrl = "https://api.github.com/repos/unknowndevelopment-ld/Equilotl/releases/latest"
+const InstallerReleaseUrl = "https://api.github.com/repos/unknowndevelopment-ld/Equilotl/releases?per_page=1"
 const InstallerReleaseUrlFallback = "https://api.github.com/repos/unknowndevelopment-ld/Equilotl/releases?per_page=1"
 
 var UserAgent = "Hellocord/" + buildinfo.InstallerGitHash + " (https://github.com/unknowndevelopment-ld/Equilotl)"
@@ -23,12 +23,12 @@ const SupportUrl = "https://github.com/unknowndevelopment-ld/Equicord/issues"
 var (
 	HellocordBlue         = color.RGBA{39, 105, 210, 0xff}
 	HellocordBlueHovered  = color.RGBA{29, 85, 184, 0xff}
-	HellocordWhite        = color.RGBA{255, 255, 255, 0xff}
-	HellocordWhiteHover   = color.RGBA{231, 241, 255, 0xff}
-	HellocordSurface      = color.RGBA{243, 247, 252, 0xff}
-	HellocordSurfaceHover = color.RGBA{225, 237, 251, 0xff}
-	HellocordText         = color.RGBA{31, 45, 65, 0xff}
-	HellocordAlert        = color.RGBA{224, 238, 255, 0xff}
+	HellocordWhite        = color.RGBA{20, 20, 24, 0xff}
+	HellocordWhiteHover   = color.RGBA{36, 39, 46, 0xff}
+	HellocordSurface      = color.RGBA{29, 30, 34, 0xff}
+	HellocordSurfaceHover = color.RGBA{45, 48, 56, 0xff}
+	HellocordText         = color.RGBA{240, 242, 245, 0xff}
+	HellocordAlert        = color.RGBA{35, 43, 58, 0xff}
 )
 
 var LinuxDiscordNames = []string{
