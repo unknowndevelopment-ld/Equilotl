@@ -592,21 +592,21 @@ func renderInstaller() g.Widget {
 					SetColor(g.StyleColorButton, HellocordDark).
 					SetColor(g.StyleColorButtonHovered, HellocordDarkHover).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
-					SetDisabled(GithubError != nil).
 					To(
-						g.Button("Reinstall / Repair").
+						g.Button("Repair Discord").
 							OnClick(func() {
-								if IsDevInstall {
-									handlePatch()
+								choice := getChosenInstall()
+								if choice == nil {
+									return
+								}
+								if err := repairDiscordInstall(choice); err != nil {
+									ShowModal("Failed to repair Discord", "Discord was not modified. Please retry or reinstall Discord from discord.com/download.", err.Error())
 								} else {
-									err := InstallLatestBuilds()
-									if err == nil {
-										handlePatch()
-									}
+									g.OpenPopup("#discord-repair-launched")
 								}
 							}).
 							Size((w-40)/4, 50),
-						Tooltip("Reinstall & Update Hellocord"),
+						Tooltip("Download and launch the official Discord installer to repair Discord"),
 					),
 				g.Style().
 					SetColor(g.StyleColorButton, HellocordRed).
@@ -633,6 +633,7 @@ func renderInstaller() g.Widget {
 
 		InfoModal("#patched", "Installed!", "Hellocord was successfully installed!"),
 		InfoModal("#unpatched", "Uninstalled", "Hellocord has been uninstalled!"),
+		InfoModal("#discord-repair-launched", "Discord repair started", "The official Discord installer was downloaded and started. Let it finish, then open Discord. This does not install Hellocord."),
 		InfoModal("#scuffed-install", "Hold On!", "You have a broken Discord Install.\n"+
 			"Sometimes Discord decides to install to the wrong location for some reason!\n"+
 			"You need to fix this before patching, otherwise Hellocord will likely not work.\n\n"+
