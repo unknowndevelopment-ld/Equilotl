@@ -223,6 +223,14 @@ func (di *DiscordInstall) Patch() {
 
 func (di *DiscordInstall) Unpatch() {
 	if err := di.unpatch(); err != nil {
+		if errors.Is(err, ErrMissingOriginalAppAsar) {
+			if repairErr := repairDiscordInstall(di); repairErr == nil {
+				g.OpenPopup("#discord-repair-launched")
+				return
+			} else {
+				err = errors.New(err.Error() + ". Automatic Discord repair also failed: " + repairErr.Error())
+			}
+		}
 		handleErr(di, err, "unpatch")
 	} else {
 		g.OpenPopup("#unpatched")
@@ -633,7 +641,7 @@ func renderInstaller() g.Widget {
 
 		InfoModal("#patched", "Installed!", "Hellocord was successfully installed!"),
 		InfoModal("#unpatched", "Uninstalled", "Hellocord has been uninstalled!"),
-		InfoModal("#discord-repair-launched", "Discord repair started", "The official Discord installer was downloaded and started. Let it finish, then open Discord. This does not install Hellocord."),
+		InfoModal("#discord-repair-launched", "Discord repair started", "The official Discord installer was downloaded and started to repair this installation. Let it finish, then open Discord. This does not install Hellocord."),
 		InfoModal("#scuffed-install", "Hold On!", "You have a broken Discord Install.\n"+
 			"Sometimes Discord decides to install to the wrong location for some reason!\n"+
 			"You need to fix this before patching, otherwise Hellocord will likely not work.\n\n"+

@@ -22,6 +22,7 @@ var BaseDirErr error
 var EquicordDirectory string
 
 var ErrAlreadyReported = errors.New("already reported")
+var ErrMissingOriginalAppAsar = errors.New("the original Discord app.asar backup is missing")
 
 func init() {
 	if dir := os.Getenv("EQUICORD_USER_DATA_DIR"); dir != "" {
@@ -232,6 +233,16 @@ func cleanupDesyncedPatchedInstall(dir string, isSystemElectron bool) (bool, err
 	}
 
 	Log.Warn("Detected a patched install with a non-Equicord app.asar. Discord was likely updated while patched; removing stale _app.asar")
+
+	if _, statErr := os.Stat(_appAsar); errors.Is(statErr, os.ErrNotExist) {
+		if isLoader {
+			return false, ErrMissingOriginalAppAsar
+		}
+		// No loader and no backup means this install is already unpatched.
+		return true, nil
+	} else if statErr != nil {
+		return false, statErr
+	}
 
 	if err = os.Remove(_appAsar); err != nil {
 		return false, CheckIfErrIsCauseItsBusyRn(err)
