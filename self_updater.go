@@ -46,7 +46,7 @@ func init() {
 }
 
 func GetInstallerDownloadLink() string {
-	const BaseUrl = "https://github.com/Equicord/Equilotl/releases/latest/download/"
+	const BaseUrl = "https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/"
 	switch runtime.GOOS {
 	case "windows":
 		filename := Ternary(buildinfo.UiType == buildinfo.UiTypeCli, "EquilotlCli", "Equilotl")
@@ -64,10 +64,14 @@ func GetInstallerDownloadLink() string {
 			return ""
 		}
 	case "linux":
-		if runtime.GOARCH == "arm64" {
-			return BaseUrl + "EquilotlCli-linux-arm64"
+		filename := "Equilotl"
+		if buildinfo.UiType == buildinfo.UiTypeCli {
+			filename = "EquilotlCli-linux"
 		}
-		return BaseUrl + "EquilotlCli-linux"
+		if runtime.GOARCH == "arm64" {
+			filename += "-arm64"
+		}
+		return BaseUrl + filename
 	default:
 		return ""
 	}

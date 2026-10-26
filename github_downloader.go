@@ -69,9 +69,19 @@ func GetGithubRelease(url, fallbackUrl string) (*GithubRelease, error) {
 		return nil, err
 	}
 
+	var payload json.RawMessage
+	if err = json.NewDecoder(res.Body).Decode(&payload); err != nil {
+		Log.Error("Failed to decode GitHub JSON Response", err)
+		return nil, err
+	}
 	var data GithubRelease
-
-	if err = json.NewDecoder(res.Body).Decode(&data); err != nil {
+	if len(payload) > 0 && payload[0] == '[' {
+		var releases []GithubRelease
+		if err = json.Unmarshal(payload, &releases); err != nil || len(releases) == 0 {
+			return nil, errors.New("GitHub returned no releases")
+		}
+		data = releases[0]
+	} else if err = json.Unmarshal(payload, &data); err != nil {
 		Log.Error("Failed to decode GitHub JSON Response", err)
 		return nil, err
 	}

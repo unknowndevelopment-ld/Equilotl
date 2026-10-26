@@ -20,10 +20,10 @@ set -- "XDG_CONFIG_HOME=$XDG_CONFIG_HOME"
 
 case "$(uname -m)" in
   aarch64|arm64) binary="EquilotlCli-linux-arm64" ;;
-  *) binary="EquilotlCli-Linux" ;;
+  *) binary="EquilotlCli-linux" ;;
 esac
 
-curl -sS "https://github.com/Equicord/Equilotl/releases/latest/download/$binary" \
+curl -sS "https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/$binary" \
   --output "$outfile" \
   --location \
   --fail

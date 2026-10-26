@@ -1,8 +1,10 @@
-# Equilotl
+# Hellocord Installer
 
-The Equicord Installer allows you to install [Equicord, the cutest Discord Desktop client mod](https://github.com/Equicord/Equicord)
+The Hellocord Installer installs [Hellocord](https://github.com/unknowndevelopment-ld/Equicord), a Discord desktop client mod. GUI and CLI downloads are provided for Windows, macOS, and Linux.
 
-![image](https://i.imgur.com/oHN41ss.png)
+![Hellocord logo](assets/hellocord-logo.gif)
+
+Download the latest tagged builds from [Hellocord Installer Releases](https://github.com/unknowndevelopment-ld/Equilotl/releases). Current Windows x64 GUI and CLI builds are available together as the `Hellocord-Windows-Installer` artifact in [GitHub Actions](https://github.com/unknowndevelopment-ld/Equilotl/actions/workflows/hellocord-windows.yml); open the latest successful run and download its artifact.
 
 ## Usage
 
@@ -10,15 +12,15 @@ Windows
 
 | | X64 | ARM64 |
 | --- | --- | --- |
-| GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl.exe) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-arm64.exe) |
-| CLI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-arm64.exe) |
+| GUI | [Latest x64 build](https://github.com/unknowndevelopment-ld/Equilotl/actions/workflows/hellocord-windows.yml) | [ARM64 release](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-arm64.exe) |
+| CLI | [Latest x64 build](https://github.com/unknowndevelopment-ld/Equilotl/actions/workflows/hellocord-windows.yml) | [ARM64 release](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-arm64.exe) |
 
 MacOS
 
 | | Universal | X64 | ARM64 |
 | --- | --- | --- | --- |
-| GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl.dmg) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x64.dmg) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-arm64.dmg) |
-| CLI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-universal) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-x64) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-arm64) |
+| GUI | [Universal DMG](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl.dmg) | [Intel DMG](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-x64.dmg) | [Apple Silicon DMG](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-arm64.dmg) |
+| CLI | [Universal](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-universal) | [Intel](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-x64) | [Apple Silicon](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-arm64) |
 
 The CLI builds are plain binaries, so run `chmod +x <file>` after downloading.
 
@@ -26,10 +28,12 @@ Linux
 
 | | X64 | ARM64 |
 | --- | --- | --- |
-| Combined GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-arm64) |
-| X11 GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x11) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x11-arm64) |
-| Wayland GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-wayland) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-wayland-arm64) |
-| CLI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-linux) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-linux-arm64) |
+| Combined GUI | [x64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl) | [ARM64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-arm64) |
+| X11 GUI | [x64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-x11) | [ARM64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-x11-arm64) |
+| Wayland GUI | [x64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-wayland) | [ARM64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-wayland-arm64) |
+| CLI | [x64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-linux) | [ARM64](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-linux-arm64) |
+
+Release asset links become downloadable after a tagged release is published. Until then, use the [releases page](https://github.com/unknowndevelopment-ld/Equilotl/releases) to check availability.
 
 
 ## Building from source
@@ -93,4 +97,4 @@ go build --tags cli
 ```
 
 You might want to pass some flags to this command to get a better build.
-See [the GitHub workflow](https://github.com/Equicord/Equilotl/blob/main/.github/workflows/release.yml) for what flags I pass or if you want more precise instructions
+See [the Hellocord installer release workflow](https://github.com/unknowndevelopment-ld/Equilotl/blob/main/.github/workflows/release.yml) for the build flags and release process.

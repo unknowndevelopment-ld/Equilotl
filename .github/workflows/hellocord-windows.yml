@@ -32,8 +32,13 @@ jobs:
         run: |
           go-winres make --product-version "git-tag"
           CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags "static gui" -ldflags "-s -w -H=windowsgui -extldflags=-static -X 'equilotl/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'equilotl/buildinfo.InstallerTag=main'" -o Hellocord-Setup.exe
+      - name: Build CLI installer
+        shell: msys2 {0}
+        run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -tags cli -ldflags "-s -w -X 'equilotl/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'equilotl/buildinfo.InstallerTag=main'" -o Hellocord-CLI.exe
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: Hellocord-Windows-Installer
-          path: Hellocord-Setup.exe
+          path: |
+            Hellocord-Setup.exe
+            Hellocord-CLI.exe
           if-no-files-found: error

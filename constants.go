@@ -12,22 +12,20 @@ import (
 )
 
 const ReleaseUrl = "https://api.github.com/repos/unknowndevelopment-ld/Equicord/releases/latest"
-const ReleaseUrlFallback = "https://github.com/unknowndevelopment-ld/Equicord/releases/latest"
+const ReleaseUrlFallback = "https://api.github.com/repos/unknowndevelopment-ld/Equicord/releases?per_page=1"
 const InstallerReleaseUrl = "https://api.github.com/repos/unknowndevelopment-ld/Equilotl/releases/latest"
-const InstallerReleaseUrlFallback = "https://github.com/unknowndevelopment-ld/Equilotl/releases/latest"
+const InstallerReleaseUrlFallback = "https://api.github.com/repos/unknowndevelopment-ld/Equilotl/releases?per_page=1"
 
 var UserAgent = "Hellocord/" + buildinfo.InstallerGitHash + " (https://github.com/unknowndevelopment-ld/Equilotl)"
 
 const SupportUrl = "https://github.com/unknowndevelopment-ld/Equicord/issues"
 
 var (
-	DiscordGreen        = color.RGBA{0, 133, 69, 0xff}
-	DiscordGreenHovered = color.RGBA{0, 108, 55, 0xff}
-	DiscordRed          = color.RGBA{210, 45, 57, 0xff}
-	DiscordRedHovered   = color.RGBA{169, 35, 46, 0xff}
-	DiscordBlue         = color.RGBA{88, 101, 242, 0xff}
-	DiscordBlueHovered  = color.RGBA{68, 82, 187, 0xff}
-	DiscordYellow       = color.RGBA{0xfe, 0xe7, 0x5c, 0xff}
+	HellocordRed        = color.RGBA{190, 24, 42, 0xff}
+	HellocordRedHovered = color.RGBA{225, 35, 54, 0xff}
+	HellocordDark       = color.RGBA{25, 25, 29, 0xff}
+	HellocordDarkHover  = color.RGBA{42, 42, 48, 0xff}
+	HellocordAlert      = color.RGBA{105, 18, 29, 0xff}
 )
 
 var LinuxDiscordNames = []string{
