@@ -678,31 +678,30 @@ func renderErrorCard(bgColor color.Color, textColor color.Color, message string,
 func loop() {
 	g.PushWindowPadding(48, 48)
 
-	g.Style().
-		SetColor(g.StyleColorWindowBg, color.RGBA{12, 12, 14, 0xff}).
-		SetColor(g.StyleColorChildBg, color.RGBA{18, 18, 21, 0xff}).
-		SetColor(g.StyleColorPopupBg, color.RGBA{20, 20, 24, 0xff}).
-		SetColor(g.StyleColorTitleBg, color.RGBA{8, 8, 10, 0xff}).
-		SetColor(g.StyleColorTitleBgActive, color.RGBA{35, 12, 16, 0xff}).
-		SetColor(g.StyleColorFrameBg, color.RGBA{30, 30, 34, 0xff}).
-		SetColor(g.StyleColorFrameBgHovered, color.RGBA{48, 32, 36, 0xff}).
-		SetColor(g.StyleColorHeader, color.RGBA{HellocordRed.R, HellocordRed.G, HellocordRed.B, 0x66}).
-		SetColor(g.StyleColorHeaderHovered, HellocordRed).
-		SetColor(g.StyleColorCheckMark, HellocordRedHovered).
-		To(g.SingleWindow().
-			RegisterKeyboardShortcuts(
-				g.WindowShortcut{Key: g.KeyUp, Callback: func() {
-					if radioIdx > 0 {
-						radioIdx--
-					}
-				}},
-				g.WindowShortcut{Key: g.KeyDown, Callback: func() {
-					if radioIdx < customChoiceIdx {
-						radioIdx++
-					}
-				}},
-			).
-			Layout(
+	g.PushStyleColor(g.StyleColorWindowBg, color.RGBA{12, 12, 14, 0xff})
+	g.PushStyleColor(g.StyleColorChildBg, color.RGBA{18, 18, 21, 0xff})
+	g.PushStyleColor(g.StyleColorPopupBg, color.RGBA{20, 20, 24, 0xff})
+	g.PushStyleColor(g.StyleColorTitleBg, color.RGBA{8, 8, 10, 0xff})
+	g.PushStyleColor(g.StyleColorTitleBgActive, color.RGBA{35, 12, 16, 0xff})
+	g.PushStyleColor(g.StyleColorFrameBg, color.RGBA{30, 30, 34, 0xff})
+	g.PushStyleColor(g.StyleColorFrameBgHovered, color.RGBA{48, 32, 36, 0xff})
+	g.PushStyleColor(g.StyleColorHeader, color.RGBA{HellocordRed.R, HellocordRed.G, HellocordRed.B, 0x66})
+	g.PushStyleColor(g.StyleColorHeaderHovered, HellocordRed)
+	g.PushStyleColor(g.StyleColorCheckMark, HellocordRedHovered)
+	g.SingleWindow().
+		RegisterKeyboardShortcuts(
+			g.WindowShortcut{Key: g.KeyUp, Callback: func() {
+				if radioIdx > 0 {
+					radioIdx--
+				}
+			}},
+			g.WindowShortcut{Key: g.KeyDown, Callback: func() {
+				if radioIdx < customChoiceIdx {
+					radioIdx++
+				}
+			}},
+		).
+		Layout(
 			g.Align(g.AlignCenter).To(
 				g.Style().SetFontSize(40).To(
 					g.Label("Hellocord Installer"),
@@ -719,7 +718,8 @@ func loop() {
 			},
 
 			renderInstaller(),
-			))
+		)
+	g.PopStyleColorV(10)
 
 	g.PopStyle()
 }
