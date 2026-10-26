@@ -195,6 +195,11 @@ func isEquicordLoaderAppAsar(appAsar string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	// Some Discord builds ship app.asar as an unpacked directory. It cannot be
+	// read as an archive file; treat it as Discord's current app, not our loader.
+	if stat.IsDir() {
+		return false, nil
+	}
 	if stat.Size() > 128*1024 {
 		return false, nil
 	}
