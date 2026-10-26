@@ -4,7 +4,7 @@ The Hellocord Installer installs [Hellocord](https://github.com/unknowndevelopme
 
 ![Hellocord logo](assets/hellocord-logo.gif)
 
-Download the latest tagged builds from [Hellocord Installer Releases](https://github.com/unknowndevelopment-ld/Equilotl/releases). Current Windows x64 GUI and CLI builds are available together as the `Hellocord-Windows-Installer` artifact in [GitHub Actions](https://github.com/unknowndevelopment-ld/Equilotl/actions/workflows/hellocord-windows.yml); open the latest successful run and download its artifact.
+Download the latest tagged builds from [Hellocord Installer Releases](https://github.com/unknowndevelopment-ld/Equilotl/releases). Windows x64 builds are published as a rolling prerelease and can be downloaded directly below.
 
 ## Usage
 
@@ -12,8 +12,8 @@ Windows
 
 | | X64 | ARM64 |
 | --- | --- | --- |
-| GUI | [Latest x64 build](https://github.com/unknowndevelopment-ld/Equilotl/actions/workflows/hellocord-windows.yml) | [ARM64 release](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-arm64.exe) |
-| CLI | [Latest x64 build](https://github.com/unknowndevelopment-ld/Equilotl/actions/workflows/hellocord-windows.yml) | [ARM64 release](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-arm64.exe) |
+| GUI | [Download EXE](https://github.com/unknowndevelopment-ld/Equilotl/releases/download/latest-windows/Hellocord-Setup.exe) | [ARM64 release](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/Equilotl-arm64.exe) |
+| CLI | [Download EXE](https://github.com/unknowndevelopment-ld/Equilotl/releases/download/latest-windows/Hellocord-CLI.exe) | [ARM64 release](https://github.com/unknowndevelopment-ld/Equilotl/releases/latest/download/EquilotlCli-arm64.exe) |
 
 MacOS
 

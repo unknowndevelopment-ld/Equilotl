@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-windows:
@@ -35,6 +35,23 @@ jobs:
       - name: Build CLI installer
         shell: msys2 {0}
         run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -tags cli -ldflags "-s -w -X 'equilotl/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'equilotl/buildinfo.InstallerTag=main'" -o Hellocord-CLI.exe
+      - name: Publish rolling Windows x64 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = "latest-windows"
+          gh release view $tag --repo $env:GITHUB_REPOSITORY *> $null
+          if ($LASTEXITCODE -eq 0) {
+            gh api --method PATCH "repos/$env:GITHUB_REPOSITORY/git/refs/tags/$tag" -f "sha=$env:GITHUB_SHA" -F "force=true"
+            if ($LASTEXITCODE -ne 0) { throw "Could not update the rolling release tag" }
+            gh release upload $tag Hellocord-Setup.exe Hellocord-CLI.exe --repo $env:GITHUB_REPOSITORY --clobber
+            if ($LASTEXITCODE -ne 0) { throw "Could not upload the Windows installers" }
+            gh release edit $tag --repo $env:GITHUB_REPOSITORY --title "Latest Hellocord Windows x64" --notes "Automatically updated Windows x64 installers from the latest successful main build." --prerelease
+          } else {
+            gh release create $tag Hellocord-Setup.exe Hellocord-CLI.exe --repo $env:GITHUB_REPOSITORY --title "Latest Hellocord Windows x64" --notes "Automatically updated Windows x64 installers from the latest successful main build." --prerelease --target $env:GITHUB_SHA
+          }
+          if ($LASTEXITCODE -ne 0) { throw "Could not publish the Windows release" }
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: Hellocord-Windows-Installer
