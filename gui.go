@@ -522,7 +522,7 @@ func renderInstaller() g.Widget {
 
 				return g.Row(
 					g.RadioButton(text, radioIdx == i).OnChange(makeRadioOnChange(i)),
-					g.Style().SetColor(g.StyleColorText, color.RGBA{0xff, 0xff, 0xff, 0x80}).To(g.Label(" "+d.path)),
+					g.Style().SetColor(g.StyleColorText, color.RGBA{74, 91, 116, 0xff}).To(g.Label(" "+d.path)),
 				)
 			}),
 			&CondWidget{showCustomLocation, func() g.Widget {
@@ -586,8 +586,9 @@ func renderInstaller() g.Widget {
 		g.Style().SetFontSize(20).To(
 			g.Row(
 				g.Style().
-					SetColor(g.StyleColorButton, HellocordRed).
-					SetColor(g.StyleColorButtonHovered, HellocordRedHovered).
+					SetColor(g.StyleColorButton, HellocordBlue).
+					SetColor(g.StyleColorButtonHovered, HellocordBlueHovered).
+					SetColor(g.StyleColorText, color.White).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
 					SetDisabled(GithubError != nil).
 					To(
@@ -597,8 +598,9 @@ func renderInstaller() g.Widget {
 						Tooltip("Patch the selected Discord Install"),
 					),
 				g.Style().
-					SetColor(g.StyleColorButton, HellocordDark).
-					SetColor(g.StyleColorButtonHovered, HellocordDarkHover).
+					SetColor(g.StyleColorButton, HellocordWhite).
+					SetColor(g.StyleColorButtonHovered, HellocordWhiteHover).
+					SetColor(g.StyleColorText, HellocordBlue).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
 					To(
 						g.Button("Repair Discord").
@@ -617,8 +619,9 @@ func renderInstaller() g.Widget {
 						Tooltip("Download and launch the official Discord installer to repair Discord"),
 					),
 				g.Style().
-					SetColor(g.StyleColorButton, HellocordRed).
-					SetColor(g.StyleColorButtonHovered, HellocordRedHovered).
+					SetColor(g.StyleColorButton, HellocordSurface).
+					SetColor(g.StyleColorButtonHovered, HellocordSurfaceHover).
+					SetColor(g.StyleColorText, HellocordBlue).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
 					To(
 						g.Button("Uninstall").
@@ -627,8 +630,9 @@ func renderInstaller() g.Widget {
 						Tooltip("Unpatch the selected Discord Install"),
 					),
 				g.Style().
-					SetColor(g.StyleColorButton, Ternary(isOpenAsar, HellocordDark, HellocordRed)).
-					SetColor(g.StyleColorButtonHovered, Ternary(isOpenAsar, HellocordDarkHover, HellocordRedHovered)).
+					SetColor(g.StyleColorButton, Ternary(isOpenAsar, HellocordWhite, HellocordBlue)).
+					SetColor(g.StyleColorButtonHovered, Ternary(isOpenAsar, HellocordWhiteHover, HellocordBlueHovered)).
+					SetColor(g.StyleColorText, Ternary(isOpenAsar, HellocordBlue, color.White)).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
 					To(
 						g.Button(Ternary(isOpenAsar, "Uninstall OpenAsar", Ternary(currentDiscord != nil, "Install OpenAsar", "(Un-)Install OpenAsar"))).
@@ -687,16 +691,17 @@ func renderErrorCard(bgColor color.Color, textColor color.Color, message string,
 func loop() {
 	g.PushWindowPadding(48, 48)
 
-	g.PushStyleColor(g.StyleColorWindowBg, color.RGBA{12, 12, 14, 0xff})
-	g.PushStyleColor(g.StyleColorChildBg, color.RGBA{18, 18, 21, 0xff})
-	g.PushStyleColor(g.StyleColorPopupBg, color.RGBA{20, 20, 24, 0xff})
-	g.PushStyleColor(g.StyleColorTitleBg, color.RGBA{8, 8, 10, 0xff})
-	g.PushStyleColor(g.StyleColorTitleBgActive, color.RGBA{35, 12, 16, 0xff})
-	g.PushStyleColor(g.StyleColorFrameBg, color.RGBA{30, 30, 34, 0xff})
-	g.PushStyleColor(g.StyleColorFrameBgHovered, color.RGBA{48, 32, 36, 0xff})
-	g.PushStyleColor(g.StyleColorHeader, color.RGBA{HellocordRed.R, HellocordRed.G, HellocordRed.B, 0x66})
-	g.PushStyleColor(g.StyleColorHeaderHovered, HellocordRed)
-	g.PushStyleColor(g.StyleColorCheckMark, HellocordRedHovered)
+	g.PushStyleColor(g.StyleColorWindowBg, HellocordWhite)
+	g.PushStyleColor(g.StyleColorChildBg, HellocordWhite)
+	g.PushStyleColor(g.StyleColorPopupBg, HellocordWhite)
+	g.PushStyleColor(g.StyleColorTitleBg, HellocordWhite)
+	g.PushStyleColor(g.StyleColorTitleBgActive, HellocordWhiteHover)
+	g.PushStyleColor(g.StyleColorFrameBg, HellocordSurface)
+	g.PushStyleColor(g.StyleColorFrameBgHovered, HellocordSurfaceHover)
+	g.PushStyleColor(g.StyleColorHeader, color.RGBA{HellocordBlue.R, HellocordBlue.G, HellocordBlue.B, 0x33})
+	g.PushStyleColor(g.StyleColorHeaderHovered, HellocordWhiteHover)
+	g.PushStyleColor(g.StyleColorCheckMark, HellocordBlue)
+	g.PushStyleColor(g.StyleColorText, HellocordText)
 	g.SingleWindow().
 		RegisterKeyboardShortcuts(
 			g.WindowShortcut{Key: g.KeyUp, Callback: func() {
@@ -721,14 +726,14 @@ func loop() {
 			&CondWidget{
 				GithubError != nil,
 				func() g.Widget {
-					return g.Style().SetFontSize(20).To(renderErrorCard(HellocordAlert, color.White, "Failed to fetch Info from GitHub. If this issue persists, visit "+SupportUrl+" for help.", 40))
+					return g.Style().SetFontSize(20).To(renderErrorCard(HellocordAlert, HellocordText, "Failed to fetch Info from GitHub. If this issue persists, visit "+SupportUrl+" for help.", 40))
 				},
 				nil,
 			},
 
 			renderInstaller(),
 		)
-	g.PopStyleColorV(10)
+	g.PopStyleColorV(11)
 
 	g.PopStyle()
 }

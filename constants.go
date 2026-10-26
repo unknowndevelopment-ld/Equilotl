@@ -21,11 +21,14 @@ var UserAgent = "Hellocord/" + buildinfo.InstallerGitHash + " (https://github.co
 const SupportUrl = "https://github.com/unknowndevelopment-ld/Equicord/issues"
 
 var (
-	HellocordRed        = color.RGBA{190, 24, 42, 0xff}
-	HellocordRedHovered = color.RGBA{225, 35, 54, 0xff}
-	HellocordDark       = color.RGBA{25, 25, 29, 0xff}
-	HellocordDarkHover  = color.RGBA{42, 42, 48, 0xff}
-	HellocordAlert      = color.RGBA{105, 18, 29, 0xff}
+	HellocordBlue         = color.RGBA{39, 105, 210, 0xff}
+	HellocordBlueHovered  = color.RGBA{29, 85, 184, 0xff}
+	HellocordWhite        = color.RGBA{255, 255, 255, 0xff}
+	HellocordWhiteHover   = color.RGBA{231, 241, 255, 0xff}
+	HellocordSurface      = color.RGBA{243, 247, 252, 0xff}
+	HellocordSurfaceHover = color.RGBA{225, 237, 251, 0xff}
+	HellocordText         = color.RGBA{31, 45, 65, 0xff}
+	HellocordAlert        = color.RGBA{224, 238, 255, 0xff}
 )
 
 var LinuxDiscordNames = []string{
