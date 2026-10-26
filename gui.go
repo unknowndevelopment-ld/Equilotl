@@ -632,7 +632,7 @@ func renderInstaller() g.Widget {
 				g.Style().
 					SetColor(g.StyleColorButton, Ternary(isOpenAsar, HellocordWhite, HellocordBlue)).
 					SetColor(g.StyleColorButtonHovered, Ternary(isOpenAsar, HellocordWhiteHover, HellocordBlueHovered)).
-					SetColor(g.StyleColorText, Ternary(isOpenAsar, HellocordBlue, color.White)).
+					SetColor(g.StyleColorText, Ternary(isOpenAsar, HellocordBlue, HellocordWhite)).
 					SetStyle(g.StyleVarFrameRounding, 8, 8).
 					To(
 						g.Button(Ternary(isOpenAsar, "Uninstall OpenAsar", Ternary(currentDiscord != nil, "Install OpenAsar", "(Un-)Install OpenAsar"))).
